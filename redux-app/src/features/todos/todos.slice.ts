@@ -5,7 +5,9 @@ import { RootState } from "../../app/store"
 export type Todo = {
     id: string,
     name: string,
-    checked: boolean
+    checked: boolean,
+    owner?: string,
+    data?: Date
 }
 
 type TodoSliceType = {
@@ -18,7 +20,9 @@ const initialState: TodoSliceType = {
     data: [{
         id: "1",
         name:"Comprare latte",
-        checked: false
+        checked: false,
+        owner: '',
+        data: new Date()
     }], 
     loading: false,
     error: ""
