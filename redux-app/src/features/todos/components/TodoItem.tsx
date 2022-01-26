@@ -7,6 +7,7 @@ export type TodoItemProps = {
     onTodoDelete?: (id: string) => void
 }
 
+
 export const TodoItem: FC<TodoItemProps> = ({ todo: { name, checked, id, owner, data }, onTodoChecked, onTodoDelete }) => {
 
     return <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
