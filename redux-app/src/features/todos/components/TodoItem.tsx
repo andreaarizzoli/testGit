@@ -44,5 +44,3 @@ export const TodoItem: FC<TodoItemProps> = ({
   );
 };
 
-// <div>{JSON.stringify(data)}</div>
-// <div>`{data?.getDate()}/{data?.getMonth()}/{data?.getFullYear()}`</div>
