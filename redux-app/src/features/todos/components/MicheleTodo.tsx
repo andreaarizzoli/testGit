@@ -33,6 +33,7 @@ export const MicheleTodo = () => {
                 }}
                 validationSchema={SignupSchema}
                 onSubmit={(values) => {
+                    dispatch( todosActions.addTodo({id: (todoData.length + 1).toString(), name: values.name, checked: false, owner: values.owner, data: new Date(values.data)}))
                     console.log(values)
                 }}
             >
@@ -75,10 +76,7 @@ export const MicheleTodo = () => {
                         <span style={{'color':'red'}}>{errors.owner}</span> <br />
                         <span style={{'color':'red'}}>{errors.data}</span>
                         <br />
-                        <button type="submit" disabled={isSubmitting} onClick={()=>{
-                            console.log(values.data)
-                            dispatch( todosActions.addTodo({id: (todoData.length + 1).toString(), name: values.name, checked: false, owner: values.owner, data: new Date(values.data)}))
-                            }}>
+                        <button type="submit" disabled={isSubmitting}>
                             Submit
                         </button>
                     </form>
