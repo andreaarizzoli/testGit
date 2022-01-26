@@ -14,13 +14,16 @@ import { CreateTodoCecilia } from './features/todos/components/CreateTodoCecilia
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
       
-      <Link to="/Cecilia">Cecilia</Link>
-      <Link to='/Andrea'>Inserisci by Andrean</Link>
-      <Link to={'/Michele'}>MicheleTodo</Link>
+      <BrowserRouter>
+        <Link to='/Andrea'>Inserisci by Andrean</Link>
+        <Link to={'/Michele'}>MicheleTodo</Link>
+        <Link to="/Cecilia">Cecilia</Link>
 
+
+        
         <Routes>
+          <Route path='/' element={<CreateTodo />}></Route>
           <Route path='/Michele' element={<MicheleTodo />}></Route>
           <Route path='/Andrea' element={<CreateAndrea />}></Route>
           <Route path='/Manuela' element={<ManuTodo />}></Route>

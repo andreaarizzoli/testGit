@@ -7,7 +7,6 @@ export type TodoItemProps = {
     onTodoDelete?: (id: string) => void
 }
 
-<<<<<<< HEAD
 export const TodoItem: FC<TodoItemProps> = ({ todo: { name, checked, id, owner, data }, onTodoChecked, onTodoDelete }) => {
 
 
@@ -32,19 +31,6 @@ export const TodoItem: FC<TodoItemProps> = ({ todo: { name, checked, id, owner, 
                 </ul>
             </div>
 
-=======
-export const TodoItem: FC<TodoItemProps>  = ( { todo: { name, checked, id, owner, data}, onTodoChecked, onTodoDelete}) => {
-    return <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-        <div>{name}</div>
-        <div>{owner}</div>
-        <div>new Date({data?.getDate()}/{data?.getMonth()}/{data?.getFullYear()})</div>
-        <div>
-            <input type="checkbox" checked={checked} onChange={() => onTodoChecked(id, !checked)} />
-        </div>
-        <div>
-            <button onClick={() => onTodoDelete && onTodoDelete(id)}>Elimina</button>
-        </div>
->>>>>>> features/44444/cecilia
     </div>
 }
 
