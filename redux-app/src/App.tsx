@@ -3,26 +3,24 @@ import logo from './logo.svg';
 import './App.css';
 import TodoList from './features/todos/components/TodoList'
 import { CreateTodo } from './features/todos/components/CreateTodo';
-import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { ManuTodo } from './features/todos/components/ManuTodo';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      
-
-      <Routes>
+        <Routes>
           <Route path='/' element={<CreateTodo />}></Route>
           <Route path='/Michele' element={<CreateTodo />}></Route>
           <Route path='/Andrea' element={<CreateTodo />}></Route>
-          <Route path='/Manuela' element={<CreateTodo />}></Route>
+          <Route path='/Manuela' element={<ManuTodo />}></Route>
           <Route path='/Cecilia' element={<CreateTodo />}></Route>
           <Route path='/Maurizio' element={<CreateTodo />}></Route>
-      </Routes>
-
-      <TodoList></TodoList>
+        </Routes>
+        <TodoList></TodoList>
       </BrowserRouter>
-       
+
     </div>
   );
 }

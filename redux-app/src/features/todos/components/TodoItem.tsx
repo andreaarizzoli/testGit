@@ -1,4 +1,4 @@
-import React,{FC} from "react"
+import React, { FC } from "react"
 import { Todo } from "../todos.slice"
 
 export type TodoItemProps = {
@@ -7,10 +7,12 @@ export type TodoItemProps = {
     onTodoDelete?: (id: string) => void
 }
 
-export const TodoItem: FC<TodoItemProps>  = ( { todo: { name, checked, id}, onTodoChecked, onTodoDelete}) => {
+export const TodoItem: FC<TodoItemProps> = ({ todo: { name, checked, id, owner, data }, onTodoChecked, onTodoDelete }) => {
 
-    return <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+    return <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
         <div>{name}</div>
+        <div>{owner}</div>
+        <div>{(data && data.getDate() + '-' + (data.getMonth() + 1) + '-' + data.getFullYear())}</div>
         <div>
             <input type="checkbox" checked={checked} onChange={() => onTodoChecked(id, !checked)} />
         </div>
