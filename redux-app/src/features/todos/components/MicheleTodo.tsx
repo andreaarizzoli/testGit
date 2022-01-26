@@ -79,7 +79,7 @@ export const MicheleTodo = () => {
                         <span style={{'color':'red' , 'margin': '0 40px'}}>{errors.owner}</span> 
                         <span style={{'color':'red'}}>{errors.data}</span>
                         <br />
-                        <button type="submit" disabled={isSubmitting}>
+                        <button type="submit">
                             Submit
                         </button>
                     </form>
