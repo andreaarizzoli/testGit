@@ -17,6 +17,7 @@ function App() {
         <Link to='/Andrea'>Inserisci by Andrean</Link>
         <Link to={'/Michele'}>MicheleTodo</Link>
         <Link to="/Cecilia">Cecilia</Link>
+        <Link to="/Manuela">Manuela</Link>
         <Link to='/Maurizio'>MaurizioCreate</Link>
 
         <Routes>
