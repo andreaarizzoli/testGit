@@ -21,6 +21,25 @@ const TodoList = () => {
 
     return <div>
         <h2>Lista dei Todo</h2>
+        <div>
+                <ul style={{ display: "flex", justifyContent: "space-around", listStyleType: 'none', color:'darkblue' }}>
+                    <li>
+                        ToDo
+                    </li>
+                    <li>
+                        Owner
+                    </li>
+                    <li>
+                        Date
+                    </li>
+                    <li>
+                        Check ToDo
+                    </li>
+                    <li>
+                        Delete ToDo
+                    </li>
+                </ul>
+            </div>
         {
             todoData.length > 0 ? todoData.map(
                 (todo: Todo) => {
