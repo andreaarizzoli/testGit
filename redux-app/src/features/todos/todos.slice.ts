@@ -21,8 +21,8 @@ const initialState: TodoSliceType = {
         id: "1",
         name:"Comprare latte",
         checked: false,
-        owner: '',
-        data: new Date()
+        owner: 'Andrea',
+        data: new Date('2222/01/24')
     }], 
     loading: false,
     error: ""
