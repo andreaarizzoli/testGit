@@ -10,13 +10,15 @@ import * as Yup from 'yup';
 export const MicheleTodo = () => {
     const dispatch = useDispatch();
 
-    const [error ,setError] :any = useState('');
     const todoData = useSelector(todoDataSelector);
 
     const SignupSchema = Yup.object().shape({
         owner: Yup.string()
-          .min(3, 'Too Short!!! (min 3)')
-          .required('Required'),
+          .min(3, ' Owner - Too Short!!! (min 3)')
+          .required('Owner Required'),
+        data: Yup.date()
+          .min(new Date, 'Date Errors!')
+          .required('Data Required')
       });
 
       var currentTime: any = new Date;
@@ -77,8 +79,11 @@ export const MicheleTodo = () => {
                             onBlur={handleBlur}
                             value={values.data}
                         />
-                        <button type="submit" onClick={()=>{
-                            setError(errors.owner)
+                        <br />
+                        <span style={{'color':'red'}}>{errors.owner}</span> <br />
+                        <span style={{'color':'red'}}>{errors.data}</span>
+                        <br />
+                        <button type="submit" disabled={isSubmitting} onClick={()=>{
                             dispatch( todosActions.addTodo({id: (todoData.length + 1).toString(), name: values.name, checked: false, owner: values.owner, data: values.data}))
                             }}>
                             Submit
@@ -86,7 +91,7 @@ export const MicheleTodo = () => {
                     </form>
                 )}
             </Formik>
-            <span style={{'color':'red'}}>{error}</span>
+            
         </div>
     )
 };
