@@ -13,6 +13,8 @@ export const MicheleTodo = () => {
     const todoData = useSelector(todoDataSelector);
 
     const SignupSchema = Yup.object().shape({
+        name: Yup.string()
+            .required('ToDo Required!'),
         owner: Yup.string()
           .min(3, ' Owner - Too Short!!! (min 3)')
           .required('Owner Required'),
@@ -73,7 +75,8 @@ export const MicheleTodo = () => {
                             value={values.data}
                         />
                         <br />
-                        <span style={{'color':'red'}}>{errors.owner}</span> <br />
+                        <span style={{'color':'red'}}>{errors.name}</span>
+                        <span style={{'color':'red' , 'margin': '0 40px'}}>{errors.owner}</span> 
                         <span style={{'color':'red'}}>{errors.data}</span>
                         <br />
                         <button type="submit" disabled={isSubmitting}>
