@@ -14,7 +14,6 @@ export const TodoItem: FC<TodoItemProps> = ({ todo: { name, checked, id, owner, 
         <div>{name}</div>
         <div>{owner}</div>
         <div>{(data && data.getDate() + '-' + (data.getMonth() + 1) + '-' + data.getFullYear())}</div>
-
         <div>
             <input type="checkbox" checked={checked} onChange={() => onTodoChecked(id, !checked)} />
         </div>
