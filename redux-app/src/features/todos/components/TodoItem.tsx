@@ -21,3 +21,6 @@ export const TodoItem: FC<TodoItemProps> = ({ todo: { name, checked, id, owner, 
         </div>
     </div>
 }
+
+// <div>{JSON.stringify(data)}</div>
+// <div>`{data?.getDate()}/{data?.getMonth()}/{data?.getFullYear()}`</div>
