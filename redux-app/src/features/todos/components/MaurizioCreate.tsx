@@ -17,14 +17,14 @@ export const MaurizioCreate = () => {
         },
         validationSchema: Yup.object({
             name: Yup.string()
-            .min(3, 'Deve essere più di 3 caratteri')
+            .min(3, 'il testo deve essere più lungo')
             .required('Required'),
 
             owner: Yup.string()
-                .min(3, 'Deve essere più di 3 caratteri')
+                .min(3, 'il testo deve essere più lungo')
                 .required('Required'),
             date: Yup.date()
-            .min(new Date(), 'Non puoi inserire un todo nel passato!')
+            .min(new Date(), 'Non puoi inserire un giorno già passato')
             .required('Required'),
             
         }),
