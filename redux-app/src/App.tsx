@@ -1,20 +1,23 @@
 import React from 'react';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import './App.css';
-import TodoList from './features/todos/components/TodoList'
-import { CreateTodo } from './features/todos/components/CreateTodo';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import PhotoList from './features/photos/components/PhotoList';
 import { CreateAndrea } from './features/todos/components/CreateAndrea';
+import { CreateTodo } from './features/todos/components/CreateTodo';
 import { ManuTodo } from './features/todos/components/ManuTodo';
+import { MaurizioCreate } from './features/todos/components/MaurizioCreate';
 import { MicheleTodo } from './features/todos/components/MicheleTodo';
-import {MaurizioCreate} from './features/todos/components/MaurizioCreate'
+import TodoList from './features/todos/components/TodoList';
 import { CreateTodoCecilia } from './features/todos/components/CreateTodoCecilia'
 import {CommentsList} from './features/comments/components/CommentsList';
+import { UsersList } from './features/users/components/UsersList';
 
 
 function App() {
   return (
     <div className="App">
 
+      <PhotoList></PhotoList>
 
       <BrowserRouter>
         <Link to='/Andrea'>Inserisci by Andrean</Link>
@@ -22,6 +25,8 @@ function App() {
         <Link to="/Cecilia">Cecilia</Link>
         <Link to="/Manuela">Manuela</Link>
         <Link to='/Maurizio'>MaurizioCreate</Link>
+        <br />
+        <Link to='/Users'>Utenti</Link>
         
 
         <Routes>
@@ -32,6 +37,7 @@ function App() {
           <Route path='/Cecilia' element={<CreateTodoCecilia />}></Route>
           <Route path='/Maurizio' element={<MaurizioCreate />}></Route>
           <Route path='/comments' element={<CommentsList />}></Route>
+          <Route path='/Users' element={<UsersList />}></Route>
         </Routes>
         <TodoList></TodoList>
       </BrowserRouter>

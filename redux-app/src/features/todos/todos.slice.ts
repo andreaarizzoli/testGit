@@ -28,7 +28,7 @@ const initialState: TodoSliceType = {
     error: ""
 }
 
-const todoSlice = createSlice({
+const todoSlice = createSlice({  //genera automaticamente creatori di azioni e tipi di azione che corrispondono ai riduttori e allo stato.
     initialState,
     name: "@todos",
     //Fino a qui abbiamo inserito i dati, ora dobbiamo inserire le azioni
