@@ -8,13 +8,17 @@ import { ManuTodo } from './features/todos/components/ManuTodo';
 import { MicheleTodo } from './features/todos/components/MicheleTodo';
 import {MaurizioCreate} from './features/todos/components/MaurizioCreate'
 import { CreateTodoCecilia } from './features/todos/components/CreateTodoCecilia'
+import {Albums} from './features/albums/components/Albums'
+
 
 
 function App() {
   return (
     <div className="App">
 
+      
 
+<Albums></Albums>
       <BrowserRouter>
         <Link to='/Andrea'>Inserisci by Andrean</Link>
         <Link to={'/Michele'}>MicheleTodo</Link>
@@ -30,8 +34,12 @@ function App() {
           <Route path='/Manuela' element={<ManuTodo />}></Route>
           <Route path='/Cecilia' element={<CreateTodoCecilia />}></Route>
           <Route path='/Maurizio' element={<MaurizioCreate />}></Route>
+          
+          
         </Routes>
         <TodoList></TodoList>
+
+        
       </BrowserRouter>
 
     </div>
