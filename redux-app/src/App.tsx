@@ -1,19 +1,21 @@
 import React from 'react';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import './App.css';
-import TodoList from './features/todos/components/TodoList'
-import { CreateTodo } from './features/todos/components/CreateTodo';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import PhotoList from './features/photos/components/PhotoList';
 import { CreateAndrea } from './features/todos/components/CreateAndrea';
+import { CreateTodo } from './features/todos/components/CreateTodo';
+import { CreateTodoCecilia } from './features/todos/components/CreateTodoCecilia';
 import { ManuTodo } from './features/todos/components/ManuTodo';
+import { MaurizioCreate } from './features/todos/components/MaurizioCreate';
 import { MicheleTodo } from './features/todos/components/MicheleTodo';
-import {MaurizioCreate} from './features/todos/components/MaurizioCreate'
-import { CreateTodoCecilia } from './features/todos/components/CreateTodoCecilia'
+import TodoList from './features/todos/components/TodoList';
 
 
 function App() {
   return (
     <div className="App">
 
+      <PhotoList></PhotoList>
 
       <BrowserRouter>
         <Link to='/Andrea'>Inserisci by Andrean</Link>
