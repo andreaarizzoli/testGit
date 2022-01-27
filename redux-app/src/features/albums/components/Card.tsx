@@ -22,8 +22,8 @@ export const Card : FC<CardProps> = ({
       width: 40%;
       margin: 20px;
       box-shadow: 8px 8px 14px -6px rgba(0, 0, 0, 0.74);
-      background-color:#C9D0D4;
-       
+      background-color: #c9d0d4;
+
       .imgcontainer {
         height: 54%;
         border-radius: 10px;
@@ -40,6 +40,11 @@ export const Card : FC<CardProps> = ({
         padding: 10px 0;
         display: ${onToggle ? "block" : "none"};
         transition: 0.5s;
+      }
+
+      @media (max-width: 820px) {
+        width: 80%;
+        margin: 0 5% 30px 5%;
       }
     `;
 

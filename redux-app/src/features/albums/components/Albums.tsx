@@ -18,11 +18,16 @@ export const Albums = () => {
   const dispatch = useDispatch();
 
   const Cardcontainer = styled.div`
-    margin:20px auto;
+    margin: 20px auto;
     display: flex;
     justify-content: space-around;
-    flex-wrap:wrap;
-    width:60%;
+    flex-wrap: wrap;
+    width: 60%;
+
+    @media (max-width: 820px) {
+      width: 90%;
+      margin: 0 5% 30px 5%;
+    }
   `;
 
   useEffect(() => {
