@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Album,
-  albumsActions,
-  AlbumSelector,
-  hasAlbumErrorSelector,
-  isAlbumsLoadingSelector,
-} from "../albums.slice";
 import styled from "styled-components";
+import {
+    Album,
+    albumsActions,
+    AlbumSelector,
+    hasAlbumErrorSelector,
+    isAlbumsLoadingSelector
+} from "../albums.slice";
+import { Card } from "./Card";
+
 
 export const Albums = () => {
   const loading = useSelector(isAlbumsLoadingSelector);
@@ -16,25 +18,18 @@ export const Albums = () => {
   const dispatch = useDispatch();
 
   const Cardcontainer = styled.div`
+    margin:20px auto;
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap;
-    with: calc (100% / 2);
-  `;
-
-  const Card = styled.div`
-  padding:20px;
-  border 2px solid black;
-  border-radius:10px;
-  color:red;
-  with:calc (100% / 2);
-  
+    flex-wrap:wrap;
+    width:60%;
   `;
 
   useEffect(() => {
     dispatch(albumsActions.fetchAlbums());
   }, [dispatch]);
 
+  
   if (loading) {
     return <h1>LOADING</h1>;
   }
@@ -43,14 +38,12 @@ export const Albums = () => {
   } else {
     return (
       <Cardcontainer>
-        {albumData.map((album: Album) => {
-          return (
-            <Card>
-              <h6>{album.userId}</h6>
-              <h5>{album.title}</h5>
-            </Card>
-          );
-        })}
+        {albumData.map(
+            (album: Album) => {
+                    return <Card album={album}></Card>
+                }
+            )
+        }
       </Cardcontainer>
     );
   }
