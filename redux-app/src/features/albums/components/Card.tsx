@@ -25,7 +25,7 @@ export const Card : FC<CardProps> = ({
       background-color: #c9d0d4;
 
       .imgcontainer {
-        height: 54%;
+        height: 290px;
         border-radius: 10px;
       }
 
@@ -37,9 +37,9 @@ export const Card : FC<CardProps> = ({
       }
 
       .Cardfooter {
+        transition: 0.5s;
         padding: 10px 0;
         display: ${onToggle ? "block" : "none"};
-        transition: 0.5s;
       }
 
       @media (max-width: 820px) {
@@ -81,7 +81,7 @@ export const Card : FC<CardProps> = ({
         </div>
           <h2>UserId: {userId}</h2>
         <div className="Cardfooter">
-          <h5> Title</h5>
+          <h3> Title:</h3>
           <p>{title}</p>
         </div>
         <Button onClick={toggle}>{onToggle ? 'Vedi Meno' : 'Vedi Dettagli'}</Button>
