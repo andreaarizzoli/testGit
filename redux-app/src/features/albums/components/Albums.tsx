@@ -7,7 +7,7 @@ import {
   hasAlbumErrorSelector,
   isAlbumsLoadingSelector,
 } from "../albums.slice";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Albums = () => {
   const loading = useSelector(isAlbumsLoadingSelector);
@@ -15,13 +15,12 @@ export const Albums = () => {
   const albumData = useSelector(AlbumSelector);
   const dispatch = useDispatch();
 
-  const Cardcontainer= styled.div`
- display:flex;
- justify-content:space-around;
- flex-wrap:wrap;
- with:calc (100% / 2);
-
- `;
+  const Cardcontainer = styled.div`
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    with: calc (100% / 2);
+  `;
 
   const Card = styled.div`
   padding:20px;
@@ -32,34 +31,27 @@ export const Albums = () => {
   
   `;
 
-
   useEffect(() => {
     dispatch(albumsActions.fetchAlbums());
-  },[dispatch]);
-
+  }, [dispatch]);
 
   if (loading) {
     return <h1>LOADING</h1>;
   }
   if (hasError) {
     return <h1>Pagina di errore</h1>;
-  }else{
-
-  return <Cardcontainer> 
-        {
-            albumData.map(
-                (album:Album)=>{
-                    return(
-                        <Card>
-                            <h6>{album.userId}</h6>
-                            <h5>{album.title}</h5>
-                        </Card>
-                    )
-
-                }
-            )
-        }
-        </Cardcontainer>
+  } else {
+    return (
+      <Cardcontainer>
+        {albumData.map((album: Album) => {
+          return (
+            <Card>
+              <h6>{album.userId}</h6>
+              <h5>{album.title}</h5>
+            </Card>
+          );
+        })}
+      </Cardcontainer>
+    );
+  }
 };
-}
-
