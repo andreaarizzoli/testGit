@@ -4,6 +4,7 @@ import { photoSlice } from "../features/photos/photos.slice";
 import todoSlice from "../features/todos/todos.slice";
 import usersSlice from "../features/users/users.slice";
 import AlbumsSlice from "../features/albums/albums.slice";
+import postsSlice from "../features/posts/posts.slice";
 
 export const store = configureStore({
     reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
       comments: commentSlice.reducer,
       photos: photoSlice.reducer,
       users: usersSlice.reducer,
-      album: AlbumsSlice.reducer
+      album: AlbumsSlice.reducer,
+      posts: postsSlice.reducer,
     },
   });
  
