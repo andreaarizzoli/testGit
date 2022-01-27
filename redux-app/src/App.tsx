@@ -34,7 +34,7 @@ function App() {
         
 
         <Routes>
-          <Route path='/' element={<CreateTodo />}></Route>
+          <Route path='/todo' element={<CreateTodo />}></Route>
           <Route path='/Michele' element={<MicheleTodo />}></Route>
           <Route path='/Andrea' element={<CreateAndrea />}></Route>
           <Route path='/Manuela' element={<ManuTodo />}></Route>
@@ -45,7 +45,7 @@ function App() {
           <Route path='/Users' element={<UsersList />}></Route>
           <Route path='Photos' element={<PhotoList />}></Route>
         </Routes>
-        <TodoList></TodoList>
+
 
         
       </BrowserRouter>
