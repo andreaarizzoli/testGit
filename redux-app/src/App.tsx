@@ -1,15 +1,17 @@
 import React from 'react';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import './App.css';
-import TodoList from './features/todos/components/TodoList'
-import { CreateTodo } from './features/todos/components/CreateTodo';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import PhotoList from './features/photos/components/PhotoList';
 import { CreateAndrea } from './features/todos/components/CreateAndrea';
+import { CreateTodo } from './features/todos/components/CreateTodo';
 import { ManuTodo } from './features/todos/components/ManuTodo';
+import { MaurizioCreate } from './features/todos/components/MaurizioCreate';
 import { MicheleTodo } from './features/todos/components/MicheleTodo';
-import {MaurizioCreate} from './features/todos/components/MaurizioCreate'
+import TodoList from './features/todos/components/TodoList';
 import { CreateTodoCecilia } from './features/todos/components/CreateTodoCecilia'
 import {Albums} from './features/albums/components/Albums'
 
+import { UsersList } from './features/users/components/UsersList';
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
 
       
 
+      <PhotoList></PhotoList>
 
       <BrowserRouter>
         <Link to='/Andrea'>Inserisci by Andrean</Link>
@@ -27,6 +30,8 @@ function App() {
         <Link to='/Maurizio'>MaurizioCreate</Link>
         <Link to='/Albums'>Albums</Link>
         
+        <br />
+        <Link to='/Users'>Utenti</Link>
         
 
         <Routes>
@@ -39,6 +44,8 @@ function App() {
           <Route path='/albums' element={<Albums />}></Route>
           
           
+
+          <Route path='/Users' element={<UsersList />}></Route>
         </Routes>
         <TodoList></TodoList>
 
