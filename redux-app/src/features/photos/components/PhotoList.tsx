@@ -9,12 +9,14 @@ import {
 //import styled from "styled-components";
 import styled from 'styled-components';
 
+
 const PhotoList = () => {
   const dispatch = useDispatch();
 
   const loading = useSelector(isPhotoLoadingSelector);
   const hasError = useSelector(hasPhotoErrorSelector);
   const data = useSelector(dataPhotoSelector);
+  
 
   const List = styled.ul`
     display: flex;

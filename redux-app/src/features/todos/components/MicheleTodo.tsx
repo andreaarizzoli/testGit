@@ -2,7 +2,6 @@ import { Formik } from "formik";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
-import PhotoList from "../../photos/components/PhotoList";
 import { todoDataSelector, todosActions } from "../todos.slice";
 
 export const MicheleTodo = () => {
@@ -20,7 +19,6 @@ export const MicheleTodo = () => {
 
   return (
     <div>
-      <PhotoList></PhotoList>
       <Formik
         initialValues={{
           id: "",
