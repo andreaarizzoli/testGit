@@ -48,8 +48,11 @@ const PhotoList = () => {
                 (photo: Photo) => {
                     return <PhotoItem key={photo.id} photo={photo} ></PhotoItem>
                 }
+                
             )
+            
       }
+
     </CardContainer>
   );
 };
