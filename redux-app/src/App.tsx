@@ -16,8 +16,6 @@ function App() {
   return (
     <div className="App">
 
-      <PhotoList></PhotoList>
-
       <BrowserRouter>
         <Link to='/Andrea'>Inserisci by Andrean</Link>
         <Link to={'/Michele'}>MicheleTodo</Link>
@@ -26,6 +24,8 @@ function App() {
         <Link to='/Maurizio'>MaurizioCreate</Link>
         <br />
         <Link to='/Users'>Utenti</Link>
+        <Link to='Photos'>Photo</Link>
+
         
 
         <Routes>
@@ -37,6 +37,7 @@ function App() {
           <Route path='/Maurizio' element={<MaurizioCreate />}></Route>
 
           <Route path='/Users' element={<UsersList />}></Route>
+          <Route path='Photos' element={<PhotoList />}></Route>
         </Routes>
         <TodoList></TodoList>
       </BrowserRouter>
