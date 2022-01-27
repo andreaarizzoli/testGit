@@ -44,7 +44,7 @@ function App() {
           <Route path="Photos" element={<PhotoList />}></Route>
           <Route path="/Posts" element={<PostsList></PostsList>}></Route>
         </Routes>
-        <TodoList></TodoList>
+        {/* <TodoList></TodoList> */}
       </BrowserRouter>
     </div>
   );
