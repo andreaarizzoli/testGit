@@ -1,10 +1,14 @@
 import { configureStore, ThunkAction } from "@reduxjs/toolkit";
-import postsSlice from "../features/posts/posts.slice";
+import { photoSlice } from "../features/photos/photos.slice";
 import todoSlice from "../features/todos/todos.slice";
+import usersSlice from "../features/users/users.slice";
+import postsSlice from "../features/posts/posts.slice";
 
 export const store = configureStore({
     reducer: {
       todos: todoSlice.reducer,
+      photos: photoSlice.reducer,
+      users: usersSlice.reducer,
       posts: postsSlice.reducer,
     },
   });
