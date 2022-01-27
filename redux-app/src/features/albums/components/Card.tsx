@@ -11,6 +11,12 @@ export const Card : FC<CardProps> = ({
   
 }) => {
 
+     const [onToggle, setonToggle] = useState(false);
+     const toggle = () => {
+       setonToggle(!onToggle);
+     };
+   
+   
     const Carditem = styled.div`
     border-radius: 10px;
     width: 30%;
@@ -33,10 +39,8 @@ export const Card : FC<CardProps> = ({
     .Cardfooter {
       background-color: rgba(255, 255, 255, 0.2);
       padding: 10px 0;
-    }
-
-    h5{
-        display:none
+      display: ${onToggle ? 'block': 'none'};
+      transition: 0.3s;
     }
   `;
 
@@ -55,13 +59,11 @@ export const Card : FC<CardProps> = ({
       button:hover {
         background-color: black;
         color: white;
+        
       }
     `;
 
-    const [onToggle, steonToggle]=useState(false);
-    const toggle = () => {
-      steonToggle(onToggle)
-    };
+   
     
     
     return (
@@ -72,11 +74,11 @@ export const Card : FC<CardProps> = ({
             alt=""
           />
         </div>
-        <div className="Cardfooter">
           <h2>UserId: {userId}</h2>
+        <div className="Cardfooter">
           <h5> Title: {title}</h5>
         </div>
-        <Button onClick={toggle}>Scopri</Button>
+        <Button onClick={toggle}>{onToggle ? 'Vedi Meno' : 'Vedi Dettagli'}</Button>
       </Carditem>
     ); 
 }
