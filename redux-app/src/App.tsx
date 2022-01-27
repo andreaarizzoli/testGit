@@ -10,12 +10,16 @@ import { MicheleTodo } from './features/todos/components/MicheleTodo';
 import TodoList from './features/todos/components/TodoList';
 import { CreateTodoCecilia } from './features/todos/components/CreateTodoCecilia'
 import {CommentsList} from './features/comments/components/CommentsList';
+import {Albums} from './features/albums/components/Albums'
+
 import { UsersList } from './features/users/components/UsersList';
 
 
 function App() {
   return (
     <div className="App">
+
+      
 
       <PhotoList></PhotoList>
 
@@ -25,6 +29,8 @@ function App() {
         <Link to="/Cecilia">Cecilia</Link>
         <Link to="/Manuela">Manuela</Link>
         <Link to='/Maurizio'>MaurizioCreate</Link>
+        <Link to='/Albums'>Albums</Link>
+        
         <br />
         <Link to='/Users'>Utenti</Link>
         
@@ -36,10 +42,19 @@ function App() {
           <Route path='/Manuela' element={<ManuTodo />}></Route>
           <Route path='/Cecilia' element={<CreateTodoCecilia />}></Route>
           <Route path='/Maurizio' element={<MaurizioCreate />}></Route>
+<<<<<<< HEAD
           <Route path='/comments' element={<CommentsList />}></Route>
+=======
+          <Route path='/albums' element={<Albums />}></Route>
+          
+          
+
+>>>>>>> develop
           <Route path='/Users' element={<UsersList />}></Route>
         </Routes>
         <TodoList></TodoList>
+
+        
       </BrowserRouter>
 
     </div>
