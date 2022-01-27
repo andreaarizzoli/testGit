@@ -16,18 +16,14 @@ type  AlbumSliceType={
 
 
 const initialState: AlbumSliceType = {
-    data: [{
-        userId: 0,
-        id:0,
-        title:''
-    }], 
+    data: [], 
     loading: false,
     error: ""
 }
 
 const fetchAlbums = createAsyncThunk('fetchAlbums', async ( _ , thunkAPI)=>{
     try{
-    const response = await fetch('https://https://jsonplaceholder.typicode.com/albums')
+    const response = await fetch('https://jsonplaceholder.typicode.com/albums')
     const data= await response.json();
     return data;
     } catch(e){

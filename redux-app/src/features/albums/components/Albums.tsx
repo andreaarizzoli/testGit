@@ -16,7 +16,7 @@ export const Albums = () => {
 
   useEffect(() => {
     dispatch(albumsActions.fetchAlbums());
-  });
+  },[dispatch]);
 
 
   if (loading) {
