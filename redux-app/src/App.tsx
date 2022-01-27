@@ -24,12 +24,12 @@ function App() {
         <Link to="/Cecilia">Cecilia</Link>
         <Link to="/Manuela">Manuela</Link>
         <Link to='/Maurizio'>MaurizioCreate</Link>
-        <Link to='/Albums'>Albums</Link>
+        
         
         <br />
         <Link to='/Users'>Utenti</Link>
         <Link to='Photos'>Photo</Link>
-
+        <Link to='/Albums'>Albums</Link>
         
 
         <Routes>
