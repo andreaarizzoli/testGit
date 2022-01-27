@@ -85,7 +85,6 @@ export const CreateTodoCecilia = () => {
 
             </form>
         </div>
-        <PostsList></PostsList>
         </div>
     );
 };

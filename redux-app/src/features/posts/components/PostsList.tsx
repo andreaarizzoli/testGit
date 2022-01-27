@@ -6,6 +6,17 @@ import {
   postsActions,
   postsDataSelector,
 } from "../posts.slice";
+import styled from "styled-components";
+import { CardPost } from "./Card";
+
+//Div per disporre le card
+const Div = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  background-color: #f5f5f5;
+  padding-top: 3rem;
+`;
 
 export const PostsList = () => {
   const dispatch = useDispatch();
@@ -13,7 +24,10 @@ export const PostsList = () => {
   const loading = useSelector(isPostsLoadingSelector);
   const hasError = useSelector(hasPostsErrorSelector);
   const data = useSelector(postsDataSelector);
-  const fetchData = useCallback(() => {dispatch(postsActions.fetchPosts())}, [dispatch])
+
+  const fetchData = useCallback(() => {
+    dispatch(postsActions.fetchPosts());
+  }, [dispatch]);
 
   useEffect(() => {
     fetchData();
@@ -35,15 +49,12 @@ export const PostsList = () => {
   }
 
   return (
-    <div>
+    <Div>
       {data.map((post) => {
         return (
-          <div key={post.id}>
-            <h2>{post.title}</h2>
-            <p>{post.body}</p>
-          </div>
+          <CardPost key={post.id} post={post}></CardPost>
         );
       })}
-    </div>
+    </Div>
   );
 };
