@@ -7,6 +7,8 @@ import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import todoSlice, { todoDataSelector, todosActions } from "../todos.slice";
 
+import { PostsList } from '../../posts/components/PostsList';
+
 export const CreateTodoCecilia = () => {
 
     const todoData = useSelector(todoDataSelector);
@@ -28,12 +30,13 @@ export const CreateTodoCecilia = () => {
             data: Yup.date().min(new Date(), 'Please choose a date that is not in the past').required('Required'),
         }),
         onSubmit: values => {
-            dispatch(todosActions.addTodo({id: (todoData.length + 1).toString(), name: values.name, checked: false, owner: values.owner, data: new Date()}))
-            alert(JSON.stringify(values, null, 2));
+            dispatch(todosActions.addTodo({id: (todoData.length + 1).toString(), name: values.name, checked: false, owner: values.owner, data: new Date(values.data)}))
+            //alert(JSON.stringify(values, null, 2));
         },
     });
 
     return (
+        <div>
         <div style={{ marginTop: "2em" }}>
             <h2>Inserisci nuova nota</h2>
             <form onSubmit={formik.handleSubmit}>
@@ -81,6 +84,8 @@ export const CreateTodoCecilia = () => {
                 </div>
 
             </form>
+        </div>
+        <PostsList></PostsList>
         </div>
     );
 };
