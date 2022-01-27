@@ -7,12 +7,31 @@ import {
   hasAlbumErrorSelector,
   isAlbumsLoadingSelector,
 } from "../albums.slice";
+import styled from 'styled-components';
 
 export const Albums = () => {
   const loading = useSelector(isAlbumsLoadingSelector);
   const hasError = useSelector(hasAlbumErrorSelector);
   const albumData = useSelector(AlbumSelector);
   const dispatch = useDispatch();
+
+  const Cardcontainer= styled.div`
+ display:flex;
+ justify-content:space-around;
+ flex-wrap:wrap;
+ with:calc (100% / 2);
+
+ `;
+
+  const Card = styled.div`
+  padding:20px;
+  border 2px solid black;
+  border-radius:10px;
+  color:red;
+  with:calc (100% / 2);
+  
+  `;
+
 
   useEffect(() => {
     dispatch(albumsActions.fetchAlbums());
@@ -26,20 +45,21 @@ export const Albums = () => {
     return <h1>Pagina di errore</h1>;
   }else{
 
-  return <div>
-      {
-        albumData.map(
-            (album:Album)=>{
-                return(
-                    <div>
-                        <h6>{album.userId}</h6>
-                        <h5>{album.title}</h5>
-                    </div>
-                )
+  return <Cardcontainer> 
+        {
+            albumData.map(
+                (album:Album)=>{
+                    return(
+                        <Card>
+                            <h6>{album.userId}</h6>
+                            <h5>{album.title}</h5>
+                        </Card>
+                    )
 
-            }
-        )
-      }
-      </div>
+                }
+            )
+        }
+        </Cardcontainer>
 };
 }
+
