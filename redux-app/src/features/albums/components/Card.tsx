@@ -59,6 +59,8 @@ const Cardfooter = {
       }
     `;
 
+    
+
     type StyleBTNProps = {color?:string}
 
     const StyledBTN = styled(PrimaryButton)`

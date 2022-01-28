@@ -57,7 +57,7 @@ export const Albums = () => {
       <Cardcontainer>
         <Card album={albumData[0]}>children</Card>
         {albumData.map((album: Album) => {
-          return <Card key={album.id} album={album}> <a href="/">Home</a></Card>;
+          return <Card key={album.id} album={album}> <a href="/Maurizio">VAI</a></Card>;
         })}
       </Cardcontainer>
     );
