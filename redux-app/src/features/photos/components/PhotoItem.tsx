@@ -77,6 +77,13 @@ export const PhotoItem: FC<PhotoItemProps> = ({
     width: 90%;
     margin: 15px auto;
     border-radius: 10px;
+
+    .containerDetails {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 15px;
+        align.items: center;
+    }
     
     ::-webkit-scrollbar {
       display: none;
@@ -90,7 +97,7 @@ export const PhotoItem: FC<PhotoItemProps> = ({
         <Title>{title}</Title>
         {show && (
           <Details>
-              <div style={{'display':'flex', 'justifyContent': 'space-around' , 'marginTop': '15px' , 'alignItems':'center'}}>
+              <div className="containerDetails">
                   <div>
                     <i className="fas fa-arrow-down"></i>
                   </div>
