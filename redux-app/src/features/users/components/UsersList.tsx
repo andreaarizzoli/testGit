@@ -8,6 +8,17 @@ import {
   usersActions,
 } from "../users.slice";
 
+import styled from "styled-components";
+import { ManuCard } from "./ManuCard";
+
+const ManuCardContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+`;
+
 export const UsersList = () => {
   const loading = useSelector(isUsersLoadingSelector);
   const hasError = useSelector(hasUsersErrorSelector);
@@ -27,27 +38,10 @@ export const UsersList = () => {
   }
 
   return (
-    <table style={{width: "100%"}}>
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>City</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((el) => {
-          return (
-            <tr key={el.id}>
-              <td>{el.name}</td>
-              <td>{el.username}</td>
-              <td>{el.email}</td>
-              <td>{el.address.city}</td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <ManuCardContainer>
+      {data.map((el) => {
+        return <ManuCard user={el} key={el.id}></ManuCard>;
+      })}
+    </ManuCardContainer>
   );
 };

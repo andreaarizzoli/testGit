@@ -4,11 +4,11 @@ import {
   dataPhotoSelector,
   hasPhotoErrorSelector,
   isPhotoLoadingSelector,
+  Photo,
   photoAction,
 } from "../photos.slice";
-//import styled from "styled-components";
-import styled from 'styled-components';
-
+import styled from "styled-components";
+import { PhotoItem } from "./PhotoItem";
 
 const PhotoList = () => {
   const dispatch = useDispatch();
@@ -18,38 +18,11 @@ const PhotoList = () => {
   const data = useSelector(dataPhotoSelector);
   
 
-  const List = styled.ul`
+  
+  const CardContainer = styled.div`
     display: flex;
-    list-style-type: none;
-    justify-content: space-around;
-    padding: 0;
-  `;
-
-  const Title = styled.li`
-    font-size: 20px;
-    background-color: lightgray;
-    text-transform: uppercase;
-    padding: 10px;
-  `;
-
-  const Data = styled.li`
-    border: 1px solid black;
-    padding: 10px;
-    width: calc(100% / 5);
-    display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
-  `;
-
-  const DataThum = styled.li`
-    border: 1px solid black;
-    padding: 10px;
-    width: calc(100% / 5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow-x : scroll;
-    color: blue;
   `;
 
 
@@ -57,8 +30,6 @@ const PhotoList = () => {
     dispatch(photoAction.fetchPhotos());
   }, [dispatch]);
 
-  console.log(loading);
-  console.log(hasError);
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -73,29 +44,17 @@ const PhotoList = () => {
     );
   }
   return (
-    <div style={{'padding': '0', 'margin': '0', 'boxSizing': 'border-box'}}>
-      <List>
-        <Title>Album Id</Title>
-        <Title>Id</Title>
-        <Title>thumbnailUrl</Title>
-        <Title>title</Title>
-        <Title>Image</Title>
-      </List>
+    <CardContainer>
+      {data.map(
+                (photo: Photo) => {
+                    return <PhotoItem key={photo.id} photo={photo} ></PhotoItem>
+                }
+                
+            )
+            
+      }
 
-      {data.map((el) => {
-        return (
-          <List>
-            <Data>{el.albumId}</Data>
-            <Data>{el.id}</Data>
-            <DataThum>{el.thumbnailUrl}</DataThum>
-            <Data>{el.title}</Data>
-            <Data>
-              <img style={{ width: "200px" }} src={el.url} alt="images" />
-            </Data>
-          </List>
-        );
-      })}
-    </div>
+    </CardContainer>
   );
 };
 
