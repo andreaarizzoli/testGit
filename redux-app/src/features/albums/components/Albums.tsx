@@ -9,13 +9,13 @@ import {
     isAlbumsLoadingSelector
 } from "../albums.slice";
 import { Card } from "./Card";
+import { useAlbumState } from "../useAlbumsState";
+
 
 
 export const Albums = () => {
-  const loading = useSelector(isAlbumsLoadingSelector);
-  const hasError = useSelector(hasAlbumErrorSelector);
-  const albumData = useSelector(AlbumSelector);
-  const dispatch = useDispatch();
+
+  const { fetchAlbums, loading, hasError, albumData } = useAlbumState();
 
   const Cardcontainer = styled.div`
     margin: 20px auto;
@@ -31,8 +31,8 @@ export const Albums = () => {
   `;
 
   useEffect(() => {
-    dispatch(albumsActions.fetchAlbums());
-  }, [dispatch]);
+    fetchAlbums();
+  }, [fetchAlbums]);
 
   
   if (loading) {
@@ -45,7 +45,7 @@ export const Albums = () => {
       <Cardcontainer>
         {albumData.map(
             (album: Album) => {
-                    return <Card album={album}></Card>
+                    return <Card key={album.id} album={album}></Card>
                 }
             )
         }

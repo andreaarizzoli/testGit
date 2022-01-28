@@ -6,7 +6,7 @@ export type CardProps = {
   album: Album
 };
 
-export const Card : FC<CardProps> = ({
+export const Card: FC<CardProps> = ({
   album: {userId,title}
   
 }) => {
@@ -61,7 +61,7 @@ export const Card : FC<CardProps> = ({
       cursor: pointer;
 
       :hover {
-        transition: .5s;
+        transition: 0.5s;
         background-color: white;
         color: #068de6;
         border: 2px solid #068de6;
