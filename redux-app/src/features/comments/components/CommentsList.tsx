@@ -2,22 +2,12 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { useCommentState } from "../useCommentState";
 import CommentItem from "./CommentItem";
-
-export const Conteiner = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-`;
+import { Spinner, SpinnerSize } from "@fluentui/react/lib/Spinner";
+import { Stack } from "@fluentui/react/lib/Stack";
+import { PrimaryButton } from "@fluentui/react/lib/Button";
+import { Label } from "@fluentui/react/lib/Label";
 
 export const CommentsList = () => {
-  //const dispatch = useDispatch();
-  //const status = useSelector(isCommentLoadingSelector);
-  //const error = useSelector(hasCommentErrorSelector);
-  //const data = useSelector(commentDataSelector);
-  //const fetchData = useCallback(() => {
-  //  dispatch(commentActions.fetchComments());
-  //}, [dispatch]);
   const { data, status, error, fetchData } = useCommentState();
 
   useEffect(() => {
@@ -25,27 +15,42 @@ export const CommentsList = () => {
   }, [fetchData]);
 
   if (status) {
-    return <div>Loading...</div>;
+    return (
+      <Stack>
+        <Stack.Item align="center">
+          <Spinner label="Loading" size={SpinnerSize.large} />
+        </Stack.Item>
+      </Stack>
+    );
   }
   if (error) {
     return (
-      <div>
-        Errore
-        <button onClick={() => fetchData()}>Carica dati</button>
-      </div>
+      <Stack>
+        <Label>Errore</Label>
+        <PrimaryButton
+          text="Carica dati"
+          onClick={fetchData}
+          allowDisabledFocus
+        />
+      </Stack>
     );
   }
 
   return (
-    <div>
+    <Stack>
       <h1>Lista dei commenti:</h1>
       <br />
-      <Conteiner>
+      <Stack horizontal wrap horizontalAlign="space-around">
         {data.map((comment) => {
-          return <CommentItem key={comment.id} comment={comment} />;
+          return (
+            <CommentItem key={comment.id} comment={comment}>
+              <button>test</button>
+              <label>Kikko</label>
+            </CommentItem>
+          );
         })}
-      </Conteiner>
-    </div>
+      </Stack>
+    </Stack>
   );
 };
 

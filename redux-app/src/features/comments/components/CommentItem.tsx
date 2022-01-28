@@ -1,16 +1,23 @@
 import { FC } from "react";
 import styled from "styled-components";
 import { Comment } from "../comment.slice";
-import { useState } from "react";
 import { useToggle } from "./useToggle";
+import { Stack, IStackTokens } from "@fluentui/react";
+import { PrimaryButton } from "@fluentui/react/lib/Button";
+import {
+  DocumentCard,
+  DocumentCardActivity,
+  DocumentCardPreview,
+  DocumentCardTitle,
+  IDocumentCardPreviewProps,
+  DocumentCardDetails,
+  DocumentCardImage,
+} from "@fluentui/react/lib/DocumentCard";
+import { ImageFit } from "@fluentui/react/lib/Image";
 
-export const Card = styled.div`
+export const Card2 = styled.div`
   box-shadow: rgb(209 209 213) 0px 5px 15px;
   transition: 0.3s;
-  border-radius: 4px;
-  width: 40%;
-  margin-bottom: 30px;
-  padding-top: 30px;
 
   @media (max-width: 768px) {
     width: 80%;
@@ -18,40 +25,21 @@ export const Card = styled.div`
   }
 `;
 
-export const Text = styled.h4`
-  font-weight: normal;
-  margin: 10px 40px;
-`;
-
-export const TextBold = styled(Text)`
-  font-weight: bold;
-`;
-
-export const TextBody = styled(Text)`
-  margin-top: 20px;
-`;
-
-export const ButtonCard = styled.button`
-  background: white;
-  color: #008cba;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid #008cba;
-  border-radius: 3px;
-  transition-duration: 0.4s;
-
-  &:hover {
-    background: #008cba;
-    color: white;
-  }
-`;
+const card = {
+  //backgroundColor: "red",
+  width: "30%",
+  boxShadow: "rgb(209 209 213) 0px 5px 15px", //non me la prende
+  borderRadius: "4px",
+  marginBottom: "30px",
+  paddingTop: "30px",
+};
 
 type CommentItemProps = {
   comment: Comment;
+  children?: React.ReactNode; //è qualsiasi tag come btn, h1,
 };
 
-export const CommentItem: FC<CommentItemProps> = ({ comment }) => {
+export const CommentItem: FC<CommentItemProps> = ({ comment, children }) => {
   //const [showBody, setShowBody] = useState(false);
   //const handleButtonClick = () => {
   //  setShowBody(!showBody);
@@ -59,18 +47,33 @@ export const CommentItem: FC<CommentItemProps> = ({ comment }) => {
   const { open: showBody, toggle: handleButtonClick } = useToggle();
 
   return (
-    <Card>
-      <img
-        src={`https://source.unsplash.com/random/200x200?sig=1${comment.id}`}
-        alt={`Comment-Img-${comment.id}`}
-      />
-      <TextBold>{comment.name}</TextBold>
-      <Text>{comment.email}</Text>
-      {showBody && <TextBody>{comment.body}</TextBody>}
-      <ButtonCard onClick={handleButtonClick}>
-        {showBody ? "Mostra di meno" : "Mostra di più"}
-      </ButtonCard>
-    </Card>
+    <DocumentCard style={card}>
+      <div style={{ margin: "20px" }}>
+        <DocumentCardImage
+          height={200}
+          imageFit={ImageFit.cover}
+          imageSrc={`https://source.unsplash.com/random/200x200?sig=1${comment.id}`}
+        />
+      </div>
+      <DocumentCardDetails>
+        <DocumentCardTitle title={comment.name} />
+        <DocumentCardTitle title={comment.email} showAsSecondaryTitle />
+        {showBody && (
+          <DocumentCardTitle title={comment.body} showAsSecondaryTitle />
+        )}
+      </DocumentCardDetails>
+      <Stack>
+        <Stack.Item align="center">
+          {children}
+          <PrimaryButton
+            text={showBody ? "Mostra di meno" : "Mostra di più"}
+            onClick={handleButtonClick}
+            allowDisabledFocus
+            style={{ margin: "20px 0 20px 0" }}
+          />
+        </Stack.Item>
+      </Stack>
+    </DocumentCard>
   );
 };
 
