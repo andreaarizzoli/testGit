@@ -23,13 +23,14 @@ function App() {
         <Link to={"/Michele"}>MicheleTodo</Link>
         <Link to="/Cecilia">Cecilia</Link>
         <Link to="/Manuela">Manuela</Link>
-        <Link to="/Maurizio">MaurizioCreate</Link>
+        <Link to='/Maurizio'>MaurizioCreate</Link>
+        
+        
         <br />
-        <Link to="/Users">Utenti</Link>
-        <Link to="/albums">Albums</Link>
-        <Link to="/comments">Comments</Link>
-        <Link to="Photos">Photo</Link>
-        <Link to="Posts">Posts</Link>
+        <Link to='/Users'>Utenti</Link>
+        <Link to='Photos'>Photo</Link>
+        <Link to='/Albums'>Albums</Link>
+        
 
         <Routes>
           <Route path="/" element={<CreateTodo />}></Route>
@@ -44,7 +45,7 @@ function App() {
           <Route path="Photos" element={<PhotoList />}></Route>
           <Route path="/Posts" element={<PostsList></PostsList>}></Route>
         </Routes>
-        <TodoList></TodoList>
+        {/* <TodoList></TodoList> */}
       </BrowserRouter>
     </div>
   );

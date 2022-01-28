@@ -31,7 +31,7 @@ const fetchPhotos = createAsyncThunk("fetchPhotos", async (_, thunkApi) => {
   try {
     //gestisco l'errore
     const response = await fetch(
-      "https://jsonplaceholder.typicode.com/photos?_limit=5" //<-- _limit limita l'array in base al numero selezionato
+      "https://jsonplaceholder.typicode.com/photos?_limit=6" //<-- _limit limita l'array in base al numero selezionato
     );
     const data = await response.json();
 
