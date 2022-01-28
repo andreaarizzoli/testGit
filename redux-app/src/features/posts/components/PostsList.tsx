@@ -1,19 +1,35 @@
 import { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  hasPostsErrorSelector,
-  isPostsLoadingSelector,
-  postsActions,
-  postsDataSelector,
-} from "../posts.slice";
+//import { useDispatch, useSelector } from "react-redux";
+//import {
+//  hasPostsErrorSelector,
+//  isPostsLoadingSelector,
+//  postsActions,
+//  postsDataSelector,
+//} from "../posts.slice";
+import styled from "styled-components";
+import { CardPost } from "./Card";
+import { usePostState } from "./usePostState";
+
+//Div per disporre le card
+const Div = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  background-color: #f5f5f5;
+  padding-top: 3rem;
+`;
 
 export const PostsList = () => {
-  const dispatch = useDispatch();
+  const { fetchPost, hasError, data, loading } = usePostState();
 
-  const loading = useSelector(isPostsLoadingSelector);
-  const hasError = useSelector(hasPostsErrorSelector);
-  const data = useSelector(postsDataSelector);
-  const fetchData = useCallback(() => {dispatch(postsActions.fetchPosts())}, [dispatch])
+  //const dispatch = useDispatch();
+  //const loading = useSelector(isPostsLoadingSelector);
+  //const hasError = useSelector(hasPostsErrorSelector);
+  //const data = useSelector(postsDataSelector);
+
+  const fetchData = useCallback(() => {
+    fetchPost(); //dispatch(postsActions.fetchPosts());
+  }, [fetchPost]); // [dispatch]
 
   useEffect(() => {
     fetchData();
@@ -35,15 +51,10 @@ export const PostsList = () => {
   }
 
   return (
-    <div>
-      {data.map((post) => {
-        return (
-          <div key={post.id}>
-            <h2>{post.title}</h2>
-            <p>{post.body}</p>
-          </div>
-        );
+    <Div>
+      {data.map((post: any) => {
+        return <CardPost key={post.id} post={post}></CardPost>;
       })}
-    </div>
+    </Div>
   );
 };

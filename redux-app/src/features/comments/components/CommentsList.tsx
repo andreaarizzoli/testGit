@@ -1,63 +1,50 @@
-import { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-    commentActions,
-    commentDataSelector,
-    hasCommentErrorSelector,
-    isCommentLoadingSelector
-} from "../comment.slice";
+import { useEffect } from "react";
+import styled from "styled-components";
+import { useCommentState } from "../useCommentState";
+import CommentItem from "./CommentItem";
+
+export const Conteiner = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;
 
 export const CommentsList = () => {
-  const dispatch = useDispatch();
-  const status = useSelector(isCommentLoadingSelector);
-  const error = useSelector(hasCommentErrorSelector);
-  const data = useSelector(commentDataSelector);
-
-  const fetchData = useCallback(() => {
-    dispatch(commentActions.fetchComments());
-  }, [dispatch]);
+  //const dispatch = useDispatch();
+  //const status = useSelector(isCommentLoadingSelector);
+  //const error = useSelector(hasCommentErrorSelector);
+  //const data = useSelector(commentDataSelector);
+  //const fetchData = useCallback(() => {
+  //  dispatch(commentActions.fetchComments());
+  //}, [dispatch]);
+  const { data, status, error, fetchData } = useCommentState();
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
   if (status) {
-    <div>Caricamento dei commenti</div>;
+    return <div>Loading...</div>;
   }
   if (error) {
-    <div>
-      Errore
-      <button onClick={() => fetchData()}>Carica dati</button>
-    </div>;
+    return (
+      <div>
+        Errore
+        <button onClick={() => fetchData()}>Carica dati</button>
+      </div>
+    );
   }
 
   return (
-    <div style={{ backgroundColor: "yellow" }}>
+    <div>
       <h1>Lista dei commenti:</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>UserId</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Body</th>
-          </tr>
-        </thead>
-        <thead>
-          {data.map((c) => {
-            return (
-              <tr key={c.id}>
-                <td>{c.id}</td>
-                <td>{c.postId}</td>
-                <td>{c.name}</td>
-                <td>{c.email}</td>
-                <td>{c.body}</td>
-              </tr>
-            );
-          })}
-        </thead>
-      </table>
+      <br />
+      <Conteiner>
+        {data.map((comment) => {
+          return <CommentItem key={comment.id} comment={comment} />;
+        })}
+      </Conteiner>
     </div>
   );
 };

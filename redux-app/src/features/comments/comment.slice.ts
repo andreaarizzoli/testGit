@@ -28,7 +28,7 @@ const initialState: CommentTypeSlice = {
 const fetchComments = createAsyncThunk("fetchComments", async (_, thunkAPI) => {
   try {
     const response = await fetch(
-      "https://jsonplaceholder.typicode.com/comments"
+      "https://jsonplaceholder.typicode.com/comments?_limit=20"
     );
     const data = await response.json();
     //console.log(data)
