@@ -71,7 +71,7 @@ const ManuHideCardBody = styled(ManuCardBody)<{ show: boolean }>`
 export const ManuCard = (props: any) => {
   const [showMore, setShowMore] = useState(false);
   const handleClick = () => {
-    setShowMore(!showMore);
+    setShowMore(!showMore); //oppure setShowMore(p => !p) ossia una funzione generica che nega il valore senza passare il nome della variabile
   };
   return (
     <>

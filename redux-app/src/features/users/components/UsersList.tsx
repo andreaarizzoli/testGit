@@ -10,6 +10,7 @@ import {
 
 import styled from "styled-components";
 import { ManuCard } from "./ManuCard";
+import { useUserState } from "../useUserState";
 
 const ManuCardContainer = styled.div`
   display: flex;
@@ -20,15 +21,10 @@ const ManuCardContainer = styled.div`
 `;
 
 export const UsersList = () => {
-  const loading = useSelector(isUsersLoadingSelector);
-  const hasError = useSelector(hasUsersErrorSelector);
-  const error = useSelector(usersErrorSelector);
-  const data = useSelector(usersDataSelector);
-  const dispatch = useDispatch();
-
+  const { data, loading, hasError, error, fetchUsers } = useUserState();
   useEffect(() => {
-    dispatch(usersActions.fetchUsers());
-  }, [dispatch]);
+    fetchUsers();
+  }, [fetchUsers]);
 
   if (loading) {
     return <div>Loading...</div>;
