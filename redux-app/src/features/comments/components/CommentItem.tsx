@@ -2,6 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 import { Comment } from "../comment.slice";
 import { useState } from "react";
+import { useToggle } from "./useToggle";
 
 export const Card = styled.div`
   box-shadow: rgb(209 209 213) 0px 5px 15px;
@@ -47,14 +48,15 @@ export const ButtonCard = styled.button`
 `;
 
 type CommentItemProps = {
-  comment: Comment
+  comment: Comment;
 };
 
 export const CommentItem: FC<CommentItemProps> = ({ comment }) => {
-  const [showBody, setShowBody] = useState(false);
-  const handleButtonClick = () => {
-    setShowBody(!showBody);
-  };
+  //const [showBody, setShowBody] = useState(false);
+  //const handleButtonClick = () => {
+  //  setShowBody(!showBody);
+  //};
+  const { open: showBody, toggle: handleButtonClick } = useToggle();
 
   return (
     <Card>
