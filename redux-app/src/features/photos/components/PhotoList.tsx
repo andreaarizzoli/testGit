@@ -16,6 +16,7 @@ const PhotoList = () => {
   const loading = useSelector(isPhotoLoadingSelector);
   const hasError = useSelector(hasPhotoErrorSelector);
   const data = useSelector(dataPhotoSelector);
+  
 
   
   const CardContainer = styled.div`

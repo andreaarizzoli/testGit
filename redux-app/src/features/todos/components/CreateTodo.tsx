@@ -1,7 +1,6 @@
-import { createAction } from "@reduxjs/toolkit";
-import React, { useState } from "react"
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import todoSlice, { todoDataSelector, todosActions } from "../todos.slice";
+import { todoDataSelector, todosActions } from "../todos.slice";
 
 
 export const CreateTodo = () => {

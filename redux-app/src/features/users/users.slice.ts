@@ -18,12 +18,21 @@ type Address = {
   geo: Geo;
 };
 
+type Company = {
+  name: string;
+  catchPhrase: string;
+  bs: string;
+};
+
 export type User = {
   id: number;
   name: string;
   username: string;
   email: string;
   address: Address;
+  phone: string;
+  website: string;
+  company: Company;
 };
 
 type UsersSliceType = {
