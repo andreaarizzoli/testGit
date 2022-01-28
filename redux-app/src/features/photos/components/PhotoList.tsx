@@ -1,34 +1,23 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  dataPhotoSelector,
-  hasPhotoErrorSelector,
-  isPhotoLoadingSelector,
-  Photo,
-  photoAction,
-} from "../photos.slice";
 import styled from "styled-components";
+import {
+  Photo
+} from "../photos.slice";
 import { PhotoItem } from "./PhotoItem";
+import { usePhotoSlice } from "./utilities/usePhotoSlice";
 
 const PhotoList = () => {
-  const dispatch = useDispatch();
+  const { data, loading, hasError, PhotoAct } = usePhotoSlice();
 
-  const loading = useSelector(isPhotoLoadingSelector);
-  const hasError = useSelector(hasPhotoErrorSelector);
-  const data = useSelector(dataPhotoSelector);
-  
+  useEffect(() => {
+    PhotoAct();
+  }, [PhotoAct]);
 
-  
   const CardContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   `;
-
-
-  useEffect(() => {
-    dispatch(photoAction.fetchPhotos());
-  }, [dispatch]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -45,15 +34,9 @@ const PhotoList = () => {
   }
   return (
     <CardContainer>
-      {data.map(
-                (photo: Photo) => {
-                    return <PhotoItem key={photo.id} photo={photo} ></PhotoItem>
-                }
-                
-            )
-            
-      }
-
+      {data.map((photo: Photo) => {
+        return <PhotoItem key={photo.id} photo={photo}></PhotoItem>;
+      })}
     </CardContainer>
   );
 };
