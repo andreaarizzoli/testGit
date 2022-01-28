@@ -3,6 +3,13 @@ import styled from "styled-components";
 import { useCommentState } from "../useCommentState";
 import CommentItem from "./CommentItem";
 
+export const Conteiner = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;
+
 export const CommentsList = () => {
   //const dispatch = useDispatch();
   //const status = useSelector(isCommentLoadingSelector);
@@ -18,21 +25,16 @@ export const CommentsList = () => {
   }, [fetchData]);
 
   if (status) {
-    <div>Caricamento dei commenti</div>;
+    return <div>Loading...</div>;
   }
   if (error) {
-    <div>
-      Errore
-      <button onClick={() => fetchData()}>Carica dati</button>
-    </div>;
+    return (
+      <div>
+        Errore
+        <button onClick={() => fetchData()}>Carica dati</button>
+      </div>
+    );
   }
-
-  const Conteiner = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  `;
 
   return (
     <div>
