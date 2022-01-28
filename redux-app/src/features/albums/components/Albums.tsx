@@ -1,19 +1,22 @@
+import { Spinner, SpinnerSize } from "@fluentui/react/lib/Spinner";
+import { IStackProps, Stack } from "@fluentui/react/lib/Stack";
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import {
-    Album,
-    albumsActions,
-    AlbumSelector,
-    hasAlbumErrorSelector,
-    isAlbumsLoadingSelector
-} from "../albums.slice";
-import { Card } from "./Card";
+import { Album } from "../albums.slice";
 import { useAlbumState } from "../useAlbumsState";
-
-
+import { Card } from "./Card";
 
 export const Albums = () => {
+  const rowProps: IStackProps = { horizontal: true, verticalAlign: "center" };
+
+  const tokens = {
+    sectionStack: {
+      childrenGap: 10,
+    },
+    spinnerStack: {
+      childrenGap: 20,
+    },
+  };
 
   const { fetchAlbums, loading, hasError, albumData } = useAlbumState();
 
@@ -34,21 +37,28 @@ export const Albums = () => {
     fetchAlbums();
   }, [fetchAlbums]);
 
-  
+  const Loading = {
+    margin: "40px auto",
+    width: "100px",
+    fontSize: "40px",
+  };
+
   if (loading) {
-    return <h1>LOADING</h1>;
+    return (
+      <Stack {...rowProps} tokens={tokens.spinnerStack} style={Loading}>
+        <Spinner size={SpinnerSize.large} />
+      </Stack>
+    );
   }
   if (hasError) {
     return <h1>Pagina di errore</h1>;
   } else {
     return (
       <Cardcontainer>
-        {albumData.map(
-            (album: Album) => {
-                    return <Card key={album.id} album={album}></Card>
-                }
-            )
-        }
+        <Card album={albumData[0]}>children</Card>
+        {albumData.map((album: Album) => {
+          return <Card key={album.id} album={album}> <a href="/">Home</a></Card>;
+        })}
       </Cardcontainer>
     );
   }

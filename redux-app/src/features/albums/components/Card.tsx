@@ -1,13 +1,22 @@
+import { PrimaryButton } from "@fluentui/react/lib/Button";
+import {
+  DocumentCard
+} from "@fluentui/react/lib/DocumentCard";
 import React, { FC, useState } from "react";
 import styled from "styled-components";
 import { Album } from "../albums.slice";
 
+
+
+
 export type CardProps = {
-  album: Album
+  album: Album,
+  children?:React.ReactNode
 };
 
 export const Card: FC<CardProps> = ({
-  album: {userId,title}
+  album: {userId , title},
+  children
   
 }) => {
 
@@ -15,76 +24,72 @@ export const Card: FC<CardProps> = ({
      const toggle = () => {
        setonToggle(!onToggle);
      };
-   
-   
-    const Carditem = styled.div`
-      border-radius: 10px;
-      width: 40%;
-      margin: 20px;
-      box-shadow: 8px 8px 14px -6px rgba(0, 0, 0, 0.74);
-      background-color: #c9d0d4;
 
-      .imgcontainer {
-        height: 290px;
-        border-radius: 10px;
-      }
-
-      img {
+    const CardStyle = {
+      borderRadius: '10px',
+      border:'1px solid gray',
+      width: '40%',
+      margin: '20px',
+      boxShadow: '8px 8px 14px -6px rgba(0, 0, 0, 0.74)',
+      backgroundColor:'#c9d0d4',
+    }
+      
+    const Imgstyle = styled.img`
         width: 100%;
-        height: 100%;
+        height:100%;
         border-radius: 10px;
         object-fit: initial;
+      `;
+
+const Cardfooter = {
+         transition: "0.5s",
+         padding: "10px 0",
+         display:` ${onToggle ? "block" : "none"}`
       }
 
-      .Cardfooter {
-        transition: 0.5s;
-        padding: 10px 0;
-        display: ${onToggle ? "block" : "none"};
-      }
+    const Mauribtn={
+      marginBottom:"20px"
+    }
 
-      @media (max-width: 820px) {
-        width: 80%;
-        margin: 0 5% 30px 5%;
-      }
-    `;
-
-
-    const Button = styled.button`
-      display: inline-block;
-      border-radius: 5px;
-      padding: 0.5rem 0;
-      margin: 0.5rem 1rem;
-      width: 9rem;
-      background: #068de6;
-      color: white;
-      border: 2px solid white;
-      cursor: pointer;
-
-      :hover {
-        transition: 0.5s;
-        background-color: white;
-        color: #068de6;
-        border: 2px solid #068de6;
+    const Linkdiv = styled.div <StyleBTNProps>`
+      color: black;
+      font-size: 13px;
+      a{
+        color: ${(props) => props.color || "Blue"};
       }
     `;
 
+    type StyleBTNProps = {color?:string}
+
+    const StyledBTN = styled(PrimaryButton)`
+      font-weight: bold;
+      border-radius:8px;
+    `;
+    
    
-    
-    
     return (
-      <Carditem>
+      <DocumentCard style={CardStyle}>
         <div className="imgcontainer">
-          <img
+          <Imgstyle
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/London_Big_Ben_Phone_box.jpg/220px-London_Big_Ben_Phone_box.jpg"
             alt=""
           />
         </div>
-          <h2>UserId: {userId}</h2>
-        <div className="Cardfooter">
+
+        <h2>UserId: {userId}</h2>
+
+        <div style={Cardfooter}>
           <h3> Title:</h3>
           <p>{title}</p>
         </div>
-        <Button onClick={toggle}>{onToggle ? 'Vedi Meno' : 'Vedi Dettagli'}</Button>
-      </Carditem>
+
+        <StyledBTN
+          text={onToggle ? "Vedi Meno" : "Vedi Dettagli"}
+          onClick={toggle}
+          style={Mauribtn}
+        />
+
+        <Linkdiv>{children}</Linkdiv>
+      </DocumentCard>
     ); 
 }

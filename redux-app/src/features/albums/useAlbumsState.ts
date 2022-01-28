@@ -1,14 +1,12 @@
-import React, { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-
 import {
-    Album,
     albumsActions,
     AlbumSelector,
     hasAlbumErrorSelector,
     isAlbumsLoadingSelector
 } from "./albums.slice";
+
 
 
 export const useAlbumState =()=>{
