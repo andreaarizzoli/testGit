@@ -6,7 +6,8 @@ import {
   isPhotoLoadingSelector,
   photoAction,
 } from "../photos.slice";
-import styled from "styled-components";
+//import styled from "styled-components";
+import styled from 'styled-components';
 
 
 const PhotoList = () => {
