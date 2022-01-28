@@ -3,72 +3,72 @@ import styled from "styled-components";
 import { Comment } from "../comment.slice";
 import { useState } from "react";
 
-type CommentItemProps = {
-  comment: Comment;
-};
+export const Card = styled.div`
+  box-shadow: rgb(209 209 213) 0px 5px 15px;
+  transition: 0.3s;
+  border-radius: 4px;
+  width: 40%;
+  margin-bottom: 30px;
+  padding-top: 30px;
 
-export const CommentItem: FC<CommentItemProps> = ({ comment }) => {
+  @media (max-width: 768px) {
+    width: 80%;
+    margin: 0 auto 50px auto;
+  }
+`;
 
-    const [showBody, setShowBody] = useState(false);
+export const Text = styled.h4`
+  font-weight: normal;
+  margin: 10px 40px;
+`;
 
-    const handleButtonClick = () => {
-      setShowBody(!showBody);
-    }
-  
-    const Card = styled.div`
-    box-shadow: rgb(209 209 213) 0px 5px 15px;
-    transition: 0.3s;
-    border-radius: 4px;
-    float: left;
-    width: 90%;
-    margin: 0 5% 50px 5%;
-    padding: 30px 0 0 0;
+export const TextBold = styled(Text)`
+  font-weight: bold;
+`;
 
-    @media (min-width: 768px) {
-        width: 40%;
-        margin: 0 5% 30px 5%;
-    }
-
-  `;
-
-  const Text = styled.h4`
-    color: black;
-    font-weight: normal;
-    margin: 10px 50px;
-  `;
-  const TextBold = styled(Text)`
-    font-weight: bold;
-  `;
-
-  const TextBody = styled(Text)`
-  display: ${showBody ? "blockS" : "none"};
+export const TextBody = styled(Text)`
   margin-top: 20px;
 `;
 
-  const Button = styled.button`
-  color: palevioletred;
+export const ButtonCard = styled.button`
+  background: white;
+  color: #008cba;
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;
-  border: 2px solid palevioletred;
+  border: 2px solid #008cba;
   border-radius: 3px;
+  transition-duration: 0.4s;
+
+  &:hover {
+    background: #008cba;
+    color: white;
+  }
 `;
 
+type CommentItemProps = {
+  comment: Comment
+};
+
+export const CommentItem: FC<CommentItemProps> = ({ comment }) => {
+  const [showBody, setShowBody] = useState(false);
+  const handleButtonClick = () => {
+    setShowBody(!showBody);
+  };
+
   return (
-    <div style={{ width: "100%" }}>
-      <Card>
-        <img
-          src={`https://source.unsplash.com/random/200x200?sig=1${comment.id}`}
-          alt={`Comment-Img-${comment.id}`}
-        />
-        <TextBold>{comment.name}</TextBold>
-        <Text>Post: {comment.postId}</Text>
-        <Text>Email: {comment.email}</Text>
-        <TextBody>{comment.body}</TextBody>
-        <br />
-        <Button onClick={handleButtonClick}>{showBody ? "Mostra di meno" :  "Mostra di più"}</Button>
-      </Card>
-    </div>
+    <Card>
+      <img
+        src={`https://source.unsplash.com/random/200x200?sig=1${comment.id}`}
+        alt={`Comment-Img-${comment.id}`}
+      />
+      <TextBold>{comment.name}</TextBold>
+      <Text>{comment.email}</Text>
+      {showBody && <TextBody>{comment.body}</TextBody>}
+      <ButtonCard onClick={handleButtonClick}>
+        {showBody ? "Mostra di meno" : "Mostra di più"}
+      </ButtonCard>
+    </Card>
   );
 };
 

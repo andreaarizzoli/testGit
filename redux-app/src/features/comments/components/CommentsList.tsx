@@ -1,23 +1,17 @@
-import { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import styled from "styled-components";
-import {
-    commentActions,
-    commentDataSelector,
-    hasCommentErrorSelector,
-    isCommentLoadingSelector
-} from "../comment.slice";
+import { useCommentState } from "../useCommentState";
 import CommentItem from "./CommentItem";
 
 export const CommentsList = () => {
-  const dispatch = useDispatch();
-  const status = useSelector(isCommentLoadingSelector);
-  const error = useSelector(hasCommentErrorSelector);
-  const data = useSelector(commentDataSelector);
-
-  const fetchData = useCallback(() => {
-    dispatch(commentActions.fetchComments());
-  }, [dispatch]);
+  //const dispatch = useDispatch();
+  //const status = useSelector(isCommentLoadingSelector);
+  //const error = useSelector(hasCommentErrorSelector);
+  //const data = useSelector(commentDataSelector);
+  //const fetchData = useCallback(() => {
+  //  dispatch(commentActions.fetchComments());
+  //}, [dispatch]);
+  const { data, status, error, fetchData } = useCommentState();
 
   useEffect(() => {
     fetchData();
@@ -34,25 +28,21 @@ export const CommentsList = () => {
   }
 
   const Conteiner = styled.div`
-  display: flex;
-  margin: 0 -5px;
-  align-items: stretch;
-  justify-content: center;
-  `
- 
- 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  `;
 
   return (
     <div>
-      <Conteiner>
-      </Conteiner>
       <h1>Lista dei commenti:</h1>
-      {
-        data.map(
-          (comment) => {
-          return <CommentItem key={comment.id} comment={comment}/>
-        })
-      }
+      <br />
+      <Conteiner>
+        {data.map((comment) => {
+          return <CommentItem key={comment.id} comment={comment} />;
+        })}
+      </Conteiner>
     </div>
   );
 };
