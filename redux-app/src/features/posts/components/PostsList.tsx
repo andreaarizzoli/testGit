@@ -1,13 +1,14 @@
 import { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  hasPostsErrorSelector,
-  isPostsLoadingSelector,
-  postsActions,
-  postsDataSelector,
-} from "../posts.slice";
+//import { useDispatch, useSelector } from "react-redux";
+//import {
+//  hasPostsErrorSelector,
+//  isPostsLoadingSelector,
+//  postsActions,
+//  postsDataSelector,
+//} from "../posts.slice";
 import styled from "styled-components";
 import { CardPost } from "./Card";
+import { usePostState } from "./usePostState";
 
 //Div per disporre le card
 const Div = styled.div`
@@ -19,15 +20,16 @@ const Div = styled.div`
 `;
 
 export const PostsList = () => {
-  const dispatch = useDispatch();
+  const { fetchPost, hasError, data, loading } = usePostState();
 
-  const loading = useSelector(isPostsLoadingSelector);
-  const hasError = useSelector(hasPostsErrorSelector);
-  const data = useSelector(postsDataSelector);
+  //const dispatch = useDispatch();
+  //const loading = useSelector(isPostsLoadingSelector);
+  //const hasError = useSelector(hasPostsErrorSelector);
+  //const data = useSelector(postsDataSelector);
 
   const fetchData = useCallback(() => {
-    dispatch(postsActions.fetchPosts());
-  }, [dispatch]);
+    fetchPost(); //dispatch(postsActions.fetchPosts());
+  }, [fetchPost]); // [dispatch]
 
   useEffect(() => {
     fetchData();
@@ -50,10 +52,8 @@ export const PostsList = () => {
 
   return (
     <Div>
-      {data.map((post) => {
-        return (
-          <CardPost key={post.id} post={post}></CardPost>
-        );
+      {data.map((post: any) => {
+        return <CardPost key={post.id} post={post}></CardPost>;
       })}
     </Div>
   );
